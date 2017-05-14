@@ -4,6 +4,7 @@ import sys
 import getopt
 import ConfigParser
 
+import urllib
 import dryscrape
 
 from datetime import datetime
@@ -40,11 +41,17 @@ def check_refuge_availability(session):
   return(available_dates)
 
 def scrap_single_url(refuge):
+  #tell function to use global var
   global do_send_mail
+
   available_dates = []
   if refuge["interested"]:
     refuge['name'] = "<b><u>"+refuge['name']+"</u></b>"
   availability = "    <h3>"+refuge['name']+"</h3>\n    <ul>\n"
+
+  #before using dryscrape, check if URL is available
+  if urllib.urlopen(refuge['url']).getcode() != 200:
+    return(availability+"      <li>URL inaccessible</li>\n    </ul>")
   session = dryscrape.Session()
   session.visit(refuge['url'])
 
@@ -94,8 +101,9 @@ def main():
               { "name" : "Le Nuage",  "url" : "http://lesrefuges.bordeaux-metropole.fr/le-nuage/", "interested" : False },
               { "name" : "La Nuit Americaine", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-nuit-americaine/", "interested" : False },
               { "name" : "Le Prisme", "url" : "http://lesrefuges.bordeaux-metropole.fr/le-prisme/", "interested" : True }, 
-              { "name" : "Le Vouivre", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-vouivre/", "interested" : False }]
-  
+              { "name" : "La Vouivre", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-vouivre/", "interested" : False }]
+
+  #default, can be overrided  
   config_file_path = 'scraper.cfg'
 
   try:

@@ -15,6 +15,20 @@ from email.mime.text import MIMEText
 
 do_send_mail=False
 
+def usage():
+    """
+    Display usage information
+    """
+    print """
+Usage: """ + sys.argv[0] + """ [-c /new/config/path.cfg] | [--config=new/config/path.cfg]
+
+-c, --config
+   Explicitly set config file path
+-h, --help
+   Display this
+"""
+
+
 def check_refuge_availability(session):
   available_dates = []
   #Get all dates that aren't marked as "unselectable"

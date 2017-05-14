@@ -1,0 +1,5 @@
+[Gmail]
+gmail_from_addr = some@gmail.com
+gmail_to_addr = someother@gmail.com
+gmail_password = some_password
+

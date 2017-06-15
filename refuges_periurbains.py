@@ -66,10 +66,13 @@ def scrap_single_url(refuge):
   available_dates.extend(check_refuge_availability(session))
 
   #Do we need to send mail ?
-  if available_dates.extend != [] and refuge["interested"]:
-    do_send_mail=True
-  if available_dates == []:
+  if available_dates != []
+    if refuge["interested"]:
+      do_send_mail=True
+  else:
+  #Tell us there are no dates available
     available_dates.extend(["Plus de dates disponibles"])
+
   #Write available dates in HTML
   for available_date in available_dates:
     availability+="      <li>"+available_date+"</li>\n"
@@ -95,6 +98,7 @@ def send_mail(message_body, gmail_config):
 
 def main():
   website =  [{ "name" : "Le Tronc Creux", "url" : "http://lesrefuges.bordeaux-metropole.fr/le-tronc-creux/", "interested" : True },
+              { "name" : "Le Haut-Perché", "url" : "http://lesrefuges.bordeaux-metropole.fr/le-haut-perche/", "interested" : True },
               { "name" : "Le Hamac", "url" : "http://lesrefuges.bordeaux-metropole.fr/le-hamac/", "interested" : True },
               { "name" : "Les Guetteurs", "url" : "http://lesrefuges.bordeaux-metropole.fr/les-guetteurs/", "interested" : True },
               { "name" : "La Belle Etoile", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-belle-etoile/", "interested" : False },

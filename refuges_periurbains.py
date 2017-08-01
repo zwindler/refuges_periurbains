@@ -41,6 +41,7 @@ def check_refuge_availability(session):
   return(available_dates)
 
 def scrap_single_url(refuge):
+  print "*"+refuge['name']
   #tell function to use global var
   global do_send_mail
 
@@ -55,9 +56,11 @@ def scrap_single_url(refuge):
   session = dryscrape.Session()
   session.visit(refuge['url'])
 
+  print "  -get current month"
   #Get current month availability
   available_dates.extend(check_refuge_availability(session))
-
+  
+  print "  -get next month"
   #Check next month  
   datepicknext = session.at_xpath('//*[@class="datepick-next"]/a')
   datepicknext.click()
@@ -66,7 +69,8 @@ def scrap_single_url(refuge):
   available_dates.extend(check_refuge_availability(session))
 
   #Do we need to send mail ?
-  if available_dates != []
+  if available_dates != []:
+    print "available dates for "+refuge['name']+". Mark do_send_mail as True"
     if refuge["interested"]:
       do_send_mail=True
   else:
@@ -103,7 +107,7 @@ def main():
               { "name" : "Les Guetteurs", "url" : "http://lesrefuges.bordeaux-metropole.fr/les-guetteurs/", "interested" : True },
               { "name" : "La Belle Etoile", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-belle-etoile/", "interested" : False },
               { "name" : "Le Nuage",  "url" : "http://lesrefuges.bordeaux-metropole.fr/le-nuage/", "interested" : False },
-              { "name" : "La Nuit Americaine", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-nuit-americaine/", "interested" : False },
+              { "name" : "La Nuit Americaine", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-nuit-americaine/", "interested" : True },
               { "name" : "Le Prisme", "url" : "http://lesrefuges.bordeaux-metropole.fr/le-prisme/", "interested" : True }, 
               { "name" : "La Vouivre", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-vouivre/", "interested" : False }]
 

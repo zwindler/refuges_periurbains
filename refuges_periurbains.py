@@ -66,7 +66,7 @@ def scrap_single_url(refuge):
   available_dates.extend(check_refuge_availability(session))
 
   #Do we need to send mail ?
-  if available_dates != []
+  if available_dates != []:
     if refuge["interested"]:
       do_send_mail=True
   else:

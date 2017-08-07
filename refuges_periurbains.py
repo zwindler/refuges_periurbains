@@ -71,6 +71,7 @@ def scrap_single_url(refuge):
   #Do we need to send mail ?
   if available_dates != []:
     if refuge["interested"]:
+      print "Dates available & interested : ".join(available_dates)
       do_send_mail=True
   else:
   #Tell us there are no dates available

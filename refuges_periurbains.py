@@ -109,7 +109,8 @@ def main():
               { "name" : "Le Nuage",  "url" : "http://lesrefuges.bordeaux-metropole.fr/le-nuage/", "interested" : False },
               { "name" : "La Nuit Americaine", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-nuit-americaine/", "interested" : True },
               { "name" : "Le Prisme", "url" : "http://lesrefuges.bordeaux-metropole.fr/le-prisme/", "interested" : True }, 
-              { "name" : "La Vouivre", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-vouivre/", "interested" : False }]
+              { "name" : "La Vouivre", "url" : "http://lesrefuges.bordeaux-metropole.fr/la-vouivre/", "interested" : True },
+              { "name" : "Neptunea", "url" : "http://lesrefuges.bordeaux-metropole.fr/neptunea/", "interested": True }]
 
   #default, can be overrided  
   config_file_path = 'scraper.cfg'

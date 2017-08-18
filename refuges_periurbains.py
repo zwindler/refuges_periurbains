@@ -47,8 +47,8 @@ def scrap_single_url(refuge):
 
   available_dates = []
   if refuge["interested"]:
-    refuge['name'] = "<b><u>"+refuge['name']+"</u></b>"
-  availability = "    <h3>"+refuge['name']+"</h3>\n    <ul>\n"
+    refuge['name'] = '<b>'+refuge['name']+'</b>'
+  availability = '    <h3><a href="'+refuge['url']+'">'+refuge['name']+'</h3></a>\n    <ul>\n'
 
   #before using dryscrape, check if URL is available
   if urllib.urlopen(refuge['url']).getcode() != 200:

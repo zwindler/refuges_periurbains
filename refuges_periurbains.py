@@ -14,6 +14,9 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+import locale
+locale.setlocale(locale.LC_TIME,'')
+
 do_send_mail=False
 
 def usage():
@@ -79,7 +82,10 @@ def scrap_single_url(refuge):
 
   #Write available dates in HTML
   for available_date in available_dates:
-    availability+="      <li>"+available_date+"</li>\n"
+    if available_date == "Plus de dates disponibles":
+      availability+="      <li>"+available_date+"</li>\n"
+    else:
+      availability+="      <li>"+datetime.strptime(available_date, '%d-%m-%Y').strftime("%A")+" "+available_date+"</li>\n"
   return(availability+"    </ul>")
 
 def send_mail(message_body, gmail_config):
